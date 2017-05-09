@@ -7,7 +7,6 @@
     <keywords>cordova,huawei,push,huaweipush,hms</keywords>
 
     <preference name="APPID" />
-    <preference name="PACKAGENAME" />
 
     <dependency id="cordova-plugin-device" />
     <js-module name="CordovaHuaweiPush" src="www/cordova-huawei-push.js">
@@ -29,7 +28,7 @@
             </meta-data>
             <provider
                 android:name="com.huawei.hms.update.provider.UpdateProvider"
-                android:authorities="$PACKAGENAME.hms.update.provider"
+                android:authorities="$PACKAGE_NAME.hms.update.provider"
                 android:exported="false"
                 android:grantUriPermissions="true" >
             </provider>
