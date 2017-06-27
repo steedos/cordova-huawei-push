@@ -50,7 +50,7 @@ OnUpdateListener {
 
     public static String TAG = "HuaweiPushPlugin";
     public static String token = "";
-    public static int openNotificationId=0;
+    public static int openNotificationId=-1;
     public static String openNotificationExtras;
 
     private static CordovaHuaweiPush instance;
@@ -66,7 +66,7 @@ OnUpdateListener {
         super.initialize(cordova, webView);
         activity = cordova.getActivity();
         //如果是首次启动，并且点击的通知消息，则处理消息
-        if (openNotificationId != 0) {
+        if (openNotificationId != -1) {
             notificationOpened(openNotificationId, openNotificationExtras);
         }
     }
@@ -179,7 +179,7 @@ OnUpdateListener {
     }
 
     public static void pushMsgReceived (String msg) {
-        Log.e(TAG, "-------------onTokenRegistered------------------" + msg);
+        Log.e(TAG, "-------------pushMsgReceived------------------" + msg);
         if (instance == null) {
             return;
         }
@@ -202,7 +202,7 @@ OnUpdateListener {
     public static void notificationOpened (int notifyId,String msg) {
         CordovaHuaweiPush.openNotificationId = notifyId;
         CordovaHuaweiPush.openNotificationExtras = msg;
-        Log.e(TAG, "-------------onTokenRegistered------------------" + msg);
+        Log.e(TAG, "-------------notificationOpened------------------" + msg);
         if (instance == null) {
             return;
         }
@@ -220,7 +220,7 @@ OnUpdateListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        CordovaHuaweiPush.openNotificationId = 0;
+        CordovaHuaweiPush.openNotificationId = -1;
         CordovaHuaweiPush.openNotificationExtras = "";
     }
 }
